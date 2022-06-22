@@ -15,4 +15,15 @@
         <listener class="com.github.robotoss.riverpodfeaturecreater.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    <actions>
+        <action class="com.github.robotoss.riverpodfeaturecreater.actions.MyApplicationAction"
+                description="Generate a new Revirpod Feature"
+                id="GenerateFeatureId"
+                icon="/icons/riverpod.png"
+                text="New Riverpod Feature">
+            <add-to-group
+                    group-id="NewGroup"
+                    anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>
