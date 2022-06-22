@@ -1,16 +1,24 @@
 package com.github.robotoss.riverpodfeaturecreater.actions
 
-import com.intellij.ide.BrowserUtil
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.*
 
-class MyApplicationAction : AnAction() {
+class MyApplicationAction : AnAction()  {
+
+    private lateinit var dataContext: DataContext
     override fun actionPerformed(e: AnActionEvent) {
-        BrowserUtil.browse("https://www.10bis.co.il/")
+        val wrapper = GenerateFeatureDialog(e.project!!)
+
+        if (wrapper.showAndGet()) {
+            println("Successfully handled user input")
+        }
     }
 
     override fun update(e: AnActionEvent) {
-        super.update(e)
+        e.dataContext.let {
+            this.dataContext = it
+            val presentation = e.presentation
+            presentation.isEnabled = true
+        }
 
     }
 }
