@@ -1,0 +1,15 @@
+part of '${feature_snake_case}_state_manager.dart';
+
+abstract class ${feature_pascal_case}State {
+    const ${feature_pascal_case}State();
+}
+
+class ${feature_pascal_case}InitialState extends ${feature_pascal_case}State {
+     const ${feature_pascal_case}InitialState();
+}
+
+class ${feature_pascal_case}FailureState extends ${feature_pascal_case}State {
+     const ${feature_pascal_case}FailureState(this.message);
+
+     final String message;
+}

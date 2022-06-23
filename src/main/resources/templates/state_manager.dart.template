@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/${feature_snake_case}_interactor.dart';
+part '${feature_snake_case}_state.dart';
 
 final ${feature_pascal_case}StateManagerProvider = StateNotifierProvider.autoDispose<${feature_pascal_case}Notifier, ${feature_pascal_case}State>(
     (ref) => ${feature_pascal_case}Notifier(ref.read(${feature_pascal_case}RepositoryProvider)),
