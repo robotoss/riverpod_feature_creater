@@ -1,0 +1,9 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final ${feature_pascal_case}RepositoryProvider = Provider.autoDispose<${feature_pascal_case}>(
+    (ref) => ${feature_pascal_case}Impl(),
+);
+
+abstract class ${feature_pascal_case} {}
+
+class ${feature_pascal_case}Impl extends ${feature_pascal_case} {}
