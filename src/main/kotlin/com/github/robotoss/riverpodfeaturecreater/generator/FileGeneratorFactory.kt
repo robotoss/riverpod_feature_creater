@@ -1,9 +1,6 @@
 package com.github.robotoss.riverpodfeaturecreater.generator
 
-import com.github.robotoss.riverpodfeaturecreater.generator.components.InteractorGenerator
-import com.github.robotoss.riverpodfeaturecreater.generator.components.RepositoryGenerator
-import com.github.robotoss.riverpodfeaturecreater.generator.components.StateManagerGenerator
-import com.github.robotoss.riverpodfeaturecreater.generator.components.StatesGenerator
+import com.github.robotoss.riverpodfeaturecreater.generator.components.*
 
 object FileGeneratorFactory {
     fun getFileDataGenerators(name: String): List<FileDataGenerator> {
@@ -11,6 +8,7 @@ object FileGeneratorFactory {
         val interactor = InteractorGenerator(name)
         val states = StatesGenerator(name)
         val stateManager = StateManagerGenerator(name)
-        return listOf(repository, interactor, states, stateManager)
+        val page = PageGenerator(name)
+        return listOf(repository, interactor, states, stateManager, page)
     }
 }
