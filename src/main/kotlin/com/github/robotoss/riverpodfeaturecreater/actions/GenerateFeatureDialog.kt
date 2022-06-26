@@ -1,5 +1,6 @@
 package com.github.robotoss.riverpodfeaturecreater.actions
 
+import com.fleshgrinder.extensions.kotlin.toLowerSnakeCase
 import com.github.robotoss.riverpodfeaturecreater.generator.FileDataGenerator
 import com.github.robotoss.riverpodfeaturecreater.generator.FileGeneratorFactory
 import com.intellij.notification.*
@@ -67,11 +68,14 @@ class GenerateFeatureDialog(private val e: AnActionEvent) : DialogWrapper(true) 
             val project = CommonDataKeys.PROJECT.getData(e.dataContext)
             val view = LangDataKeys.IDE_VIEW.getData(e.dataContext)
             val directory = view?.orChooseDirectory
+
+            val subDirectory =
+                directory!!.createSubdirectory(className.text.toLowerSnakeCase().replace("_feature", ""))
             ApplicationManager.getApplication().runWriteAction {
                 CommandProcessor.getInstance().executeCommand(
                     project,
                     {
-                        generators.forEach { createSourceFile(project!!, it, directory!!) }
+                        generators.forEach { createSourceFile(project!!, it, subDirectory) }
                     },
                     "Generate a new Bloc",
                     null
@@ -86,8 +90,9 @@ class GenerateFeatureDialog(private val e: AnActionEvent) : DialogWrapper(true) 
     }
 
     private fun createSourceFile(project: Project, generator: FileDataGenerator, directory: PsiDirectory) {
+        val fileDirectory = generator.fileDirectory(directory)
         val fileName = generator.fileName()
-        val existingPsiFile = directory.findFile(fileName)
+        val existingPsiFile = fileDirectory.findFile(fileName)
         if (existingPsiFile != null) {
             val document = PsiDocumentManager.getInstance(project).getDocument(existingPsiFile)
             document?.insertString(document.textLength, "\n" + generator.generate())
@@ -97,7 +102,7 @@ class GenerateFeatureDialog(private val e: AnActionEvent) : DialogWrapper(true) 
         val factory = PsiFileFactory.getInstance(project)
         val psiFile = factory.createFileFromText(fileName, JavaLanguage.INSTANCE, generator.generate())
 
-        directory.add(psiFile)
+        fileDirectory.add(psiFile)
     }
 
 

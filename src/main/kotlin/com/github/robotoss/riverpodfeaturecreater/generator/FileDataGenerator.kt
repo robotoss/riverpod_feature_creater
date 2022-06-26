@@ -3,6 +3,7 @@ package com.github.robotoss.riverpodfeaturecreater.generator
 import com.fleshgrinder.extensions.kotlin.toLowerSnakeCase
 import com.fleshgrinder.extensions.kotlin.toUpperCamelCase
 import com.google.common.io.CharStreams
+import com.intellij.psi.PsiDirectory
 import org.apache.commons.lang.text.StrSubstitutor
 import java.io.InputStreamReader
 
@@ -32,12 +33,14 @@ abstract class FileDataGenerator(private val name: String,
 
     abstract fun fileName(): String
 
+    abstract fun fileDirectory(dir: PsiDirectory): PsiDirectory
+
     fun generate(): String {
         val substitutor = StrSubstitutor(templateValues)
         return substitutor.replace(templateString)
     }
 
-    fun pascalCase(): String = name.toUpperCamelCase().replace("Feature", "")
+    private fun pascalCase(): String = name.toUpperCamelCase().replace("Feature", "")
 
     fun snakeCase() = name.toLowerSnakeCase().replace("_feature", "")
 
