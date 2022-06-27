@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final ${feature_pascal_case}RepositoryProvider = Provider.autoDispose<${feature_pascal_case}Repository>(
+final ${feature_variable_case}RepositoryProvider = Provider.autoDispose<${feature_pascal_case}Repository>(
     (ref) => ${feature_pascal_case}RepositoryImpl(),
 );
 

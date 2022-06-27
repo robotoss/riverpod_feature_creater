@@ -1,5 +1,6 @@
 package com.github.robotoss.riverpodfeaturecreater.generator
 
+import com.fleshgrinder.extensions.kotlin.toLowerCamelCase
 import com.fleshgrinder.extensions.kotlin.toLowerSnakeCase
 import com.fleshgrinder.extensions.kotlin.toUpperCamelCase
 import com.google.common.io.CharStreams
@@ -13,6 +14,7 @@ abstract class FileDataGenerator(private val name: String,
 
     private val TEMPLATE_FEATURE_PASCAL_CASE = "feature_pascal_case"
     private val TEMPLATE_FEATURE_SNAKE_CASE = "feature_snake_case"
+    private val TEMPLATE_FEATURE_VARIABLE_CASE = "feature_variable_case"
 
     private val templateString: String
     private val templateValues: MutableMap<String, String>
@@ -20,7 +22,8 @@ abstract class FileDataGenerator(private val name: String,
     init {
         templateValues = mutableMapOf(
                 TEMPLATE_FEATURE_PASCAL_CASE to pascalCase(),
-                TEMPLATE_FEATURE_SNAKE_CASE to snakeCase()
+                TEMPLATE_FEATURE_SNAKE_CASE to snakeCase(),
+                TEMPLATE_FEATURE_VARIABLE_CASE to variableCase()
         )
         try {
             val resource = "/templates/$templateName.dart.template"
@@ -43,6 +46,8 @@ abstract class FileDataGenerator(private val name: String,
     private fun pascalCase(): String = name.toUpperCamelCase().replace("Feature", "")
 
     fun snakeCase() = name.toLowerSnakeCase().replace("_feature", "")
+
+    fun variableCase() = name.toLowerCamelCase().replace("Feature", "")
 
     fun fileExtension() = "dart"
 }

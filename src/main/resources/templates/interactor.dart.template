@@ -2,14 +2,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/${feature_snake_case}_repository.dart';
 
-final ${feature_pascal_case}InteractorProvider = Provider.autoDispose<${feature_pascal_case}Interactor>(
-    (ref) => ${feature_pascal_case}InteractorImpl(ref.read(${feature_pascal_case}RepositoryProvider)),
+final ${feature_variable_case}InteractorProvider = Provider.autoDispose<${feature_pascal_case}Interactor>(
+    (ref) => ${feature_pascal_case}InteractorImpl(ref.read(${feature_variable_case}RepositoryProvider)),
 );
 
 abstract class ${feature_pascal_case}Interactor {}
 
 class ${feature_pascal_case}InteractorImpl extends ${feature_pascal_case}Interactor {
-    ${feature_pascal_case}(this._repository);
+    ${feature_pascal_case}InteractorImpl(this._repository);
 
     final ${feature_pascal_case}Repository _repository;
 }
