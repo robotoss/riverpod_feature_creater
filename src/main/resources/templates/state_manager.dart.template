@@ -1,0 +1,15 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../domain/${feature_snake_case}_interactor.dart';
+part '${feature_snake_case}_state.dart';
+
+final ${feature_variable_case}StateManagerProvider = StateNotifierProvider.autoDispose<${feature_pascal_case}Notifier, ${feature_pascal_case}State>(
+    (ref) => ${feature_pascal_case}Notifier(ref.read(${feature_variable_case}InteractorProvider)),
+);
+
+
+class ${feature_pascal_case}Notifier extends ${feature_pascal_case}Interactor {
+    ${feature_pascal_case}Notifier(this._interactor);
+
+    final ${feature_pascal_case}Interactor _interactor;
+}

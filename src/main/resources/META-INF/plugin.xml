@@ -5,6 +5,9 @@
     <vendor>robotoss</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.robotoss.riverpodfeaturecreater.services.MyApplicationService"/>
@@ -15,4 +18,15 @@
         <listener class="com.github.robotoss.riverpodfeaturecreater.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    <actions>
+        <action class="com.github.robotoss.riverpodfeaturecreater.actions.MyApplicationAction"
+                description="Generate a new Revirpod Feature"
+                id="GenerateFeatureId"
+                icon="/icons/riverpod.png"
+                text="New Riverpod Feature">
+            <add-to-group
+                    group-id="NewGroup"
+                    anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>

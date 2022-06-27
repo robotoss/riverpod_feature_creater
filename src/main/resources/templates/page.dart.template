@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../state/${feature_snake_case}_state_manager.dart';
+
+class ${feature_pascal_case}Page extends ConsumerWidget {
+  const ${feature_pascal_case}Page({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stateManager = ref.watch(${feature_variable_case}StateManagerProvider);
+    return Container();
+  }
+}
