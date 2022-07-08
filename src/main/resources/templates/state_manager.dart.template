@@ -8,8 +8,9 @@ final ${feature_variable_case}StateManagerProvider = StateNotifierProvider.autoD
 );
 
 
-class ${feature_pascal_case}Notifier extends ${feature_pascal_case}Interactor {
-    ${feature_pascal_case}Notifier(this._interactor);
+class ${feature_pascal_case}Notifier extends StateNotifier<${feature_pascal_case}State> {
+    ${feature_pascal_case}Notifier(this._interactor) : super(const ${feature_pascal_case}InitialState());
+
 
     final ${feature_pascal_case}Interactor _interactor;
 }
